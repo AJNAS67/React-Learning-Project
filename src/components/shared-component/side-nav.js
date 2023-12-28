@@ -1,8 +1,15 @@
 import React, { useState } from "react";
 // import Link from 'react-router-dom'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function SideNav() {
+  const navigate = useNavigate();
+  const logout = () => {
+    console.log('logout');
+    localStorage.clear();
+    navigate("/");
+  };
+
   const [menu, setMenu] = useState("Dashboard");
 
   return (
@@ -11,7 +18,7 @@ function SideNav() {
         <span class="material-symbols-outlined nav-close">close</span>
         <a className="logo">
           <img class="short-logo" src="images/login/logo.svg" />
-          <img class="actual-logo" src="images/login/logo-large.svg" />
+          <img class="actual-logo" src="images/logo-large.svg" />
         </a>
 
         <nav>
@@ -21,8 +28,9 @@ function SideNav() {
             }}
           >
             <img src="images/dashboard.svg" />
-            {/* <span>Dashboard</span> */}
-            <Link to="/dashboard">Dashboard</Link>
+            <span>
+              <Link to="/dashboard">Dashboard</Link>
+            </span>
           </a>
           <a
             onClick={() => {
@@ -30,8 +38,9 @@ function SideNav() {
             }}
           >
             <img src="images/messeges.svg" />
-            {/* <span>Messages</span> */}
-            <Link to="/message">Messages</Link>
+            <span>
+              <Link to="/message">Messages</Link>
+            </span>
           </a>
           <a
             onClick={() => {
@@ -39,8 +48,9 @@ function SideNav() {
             }}
           >
             <img src="images/messeges.svg" />
-            <span>Messages</span>
-            {/* <Link to="/message">Messages</Link> */}
+            <span>
+              <Link to="/result">Result</Link>
+            </span>
           </a>
           <a
             onClick={() => {
@@ -48,8 +58,9 @@ function SideNav() {
             }}
           >
             <img src="images/messeges.svg" />
-            <span>Messages</span>
-            {/* <Link to="/message">Messages</Link> */}
+            <span>
+              <Link to="/barcode">Barcode</Link>
+            </span>
           </a>
           <a
             onClick={() => {
@@ -57,8 +68,9 @@ function SideNav() {
             }}
           >
             <img src="images/messeges.svg" />
-            <span>Messages</span>
-            {/* <Link to="/message">Messages</Link> */}
+            <span>
+              <Link to="/message">Messages</Link>
+            </span>
           </a>
           <a
             onClick={() => {
@@ -66,8 +78,10 @@ function SideNav() {
             }}
           >
             <img src="images/timetable.svg" />
-            <Link to="/timetable">Timetable</Link>
-            {/* <span>Timetable</span> */}
+
+            <span>
+              <Link to="/timetable">Timetable</Link>
+            </span>
           </a>
           <a
             onClick={() => {
@@ -75,12 +89,15 @@ function SideNav() {
             }}
           >
             <img src="images/payment.svg" />
-            {/* <span>Payment</span> */}
-            <Link to="payment">Payment</Link>
+            <span>
+              <Link to="payment">Payment</Link>
+            </span>
           </a>
         </nav>
         <div class="log-out">
-          <a href="">
+          <a
+            onClick={logout}
+          >
             <img src="images/logout.svg" />
             <span>Logout</span>
           </a>

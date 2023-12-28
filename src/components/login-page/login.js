@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 import withReactContent from "sweetalert2-react-content";
 const loginidUser = [
   { username: "ajnas@gmail.com", password: "aj" },
@@ -12,7 +13,9 @@ function LoginComponent() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loggedIn, setLogin] = useState(false);
-
+  
+  const navigate = useNavigate();
+  
   const checkCredentials = (enteredUsername, enteredPassword) => {
     // Iterate over the loginUserData array
     for (const user of loginidUser) {
@@ -30,8 +33,13 @@ function LoginComponent() {
     const check = checkCredentials(username, password);
     if (check) {
       setLogin(true);
+      // localStorage.setItem('isLoggned')
+      localStorage.setItem("isLoggned", true);
       showToaster("success", "Logged successfully");
+      navigate("/dashboard");
     } else {
+      localStorage.setItem("isLoggned", false);
+
       setLogin(false);
       showToaster("error", "invalid username and password");
     }
