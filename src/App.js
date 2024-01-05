@@ -5,7 +5,7 @@ import SideNav from "./components/shared-component/side-nav";
 // import {BrowserRouter,Routers,Route} from 'react-router-dom'
 import { BrowserRouter , Route, Routes ,Navigate} from "react-router-dom";
 import StudentTimeTable from "./components/student/student-timetable";
-import StudentDashboard from "./components/student/student-dashboard";
+import StudentDashboard from "./components/student/dashboard/student-dashboard";
 import BarcodeFn from "./components/barcode/barcode";
 import StudentResult from "./components/student/student-result";
 

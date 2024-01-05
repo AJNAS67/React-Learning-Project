@@ -1,4 +1,6 @@
+import axios from "axios";
 import React from "react";
+import { useEffect,useState } from "react";
 
 const exam_term = [
   {
@@ -14,8 +16,34 @@ const exam_term = [
     name: "I REVISION EXAMINATION",
   },
 ];
+let exam_term1;
 
 function StudentResult() {
+  const [exame_result,setExame]=useState([])
+  useEffect(() => {
+    exameDetails();
+  }, []);
+  const exameDetails = async () => {
+    let student_id = localStorage.getItem("studentId") || "";
+    console.log(student_id,'student id');
+
+    // 2909
+    let input = {
+      params: {
+        model: "ss.student",
+        method: "exam_term_list",
+        args: [2909],
+        kwargs: { offset: 0, limit: 8 },
+      },
+    };
+    await axios.post(`/web/dataset/call_kw`, input).then((res) => {
+      console.log(res.data.result.exam_term,'res.result');
+      let   exam_term1=res.data.result.exam_term
+      setExame(exam_term1)
+      console.log(res.result, "resylt responce");
+    });
+  };
+
   return (
     <div>
       <div className="container">
@@ -85,7 +113,7 @@ function StudentResult() {
                     "overflow-y": "scroll",
                   }}
                 >
-      {/* <div  className="col-12">
+                  {/* <div  className="col-12">
       <a
                 className="ss-card academic-list"
                 
@@ -104,17 +132,20 @@ function StudentResult() {
         
       </div> */}
 
-      {exam_term.map((term) => (
-        <a
-          key={term.id}
-          className="ss-card academic-list"
-          href={`#/${term.id}`} // You can replace this with the actual URL or link you want
-        >
-          <h5 className="heading-5-regular">{term.name}</h5>
-          <span className="material-symbols-outlined"> open_in_new </span>
-        </a>
-      ))}
-                    
+                  {exame_result.map((term) => (
+                    <a
+                      key={term.id}
+                      className="ss-card academic-list"
+                      href={`#/${term.id}`} // You can replace this with the actual URL or link you want
+                    >
+                      <h5 className="heading-5-regular">{term.name}</h5>
+                      <span className="material-symbols-outlined">
+                        {" "}
+                        open_in_new{" "}
+                      </span>
+                    </a>
+                  ))}
+
                   {/* <div className="col-12" *ngFor="let one of myArray; let i = index">
               <a
                 className="ss-card academic-list"

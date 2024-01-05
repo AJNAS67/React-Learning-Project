@@ -2,20 +2,22 @@ import React, { useState } from "react";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import withReactContent from "sweetalert2-react-content";
+import axios from "axios";
 const loginidUser = [
   { username: "ajnas@gmail.com", password: "aj" },
   { username: "hareesh@gmail.com", password: "hareesh" },
   { username: "ranjith@bay", password: "ranjith" },
   { username: "aju", password: "aju" },
+  { username: "7406401368", password: "7406401368" },
 ];
 
 function LoginComponent() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loggedIn, setLogin] = useState(false);
-  
+
   const navigate = useNavigate();
-  
+
   const checkCredentials = (enteredUsername, enteredPassword) => {
     // Iterate over the loginUserData array
     for (const user of loginidUser) {
@@ -28,13 +30,41 @@ function LoginComponent() {
     }
     return false; // No match found
   };
+  const getUserDetails = async () => {
+    await axios.post(`/web/dataset/call`, {
+      params: {
+        model: "ss.student",
+        method:"get_student_profile",
+        args: [2909],
+      },
+    });
+  };
 
-  const handleLogin = () => {
+  const loginSetDb = async () => {
+    await axios
+      .post(`/web/session/login`, {
+        params: { db: "dpirs", login: "7406401368", password: "7406401368" },
+      })
+      .then((data) => {
+        console.log(data?.result, "data?.result?.session_id");
+        localStorage.setItem("smart_session", data?.result?.session_id);
+        // localStorage.setItem(
+        //   "studentArray",
+        //   JSON.stringify(data,'.stu_lst')
+        // );
+        localStorage.setItem("userType", data?.result?.user_type);
+        const check = localStorage.getItem("userType");
+      })
+      
+  };
+  const handleLogin = async () => {
     const check = checkCredentials(username, password);
     if (check) {
       setLogin(true);
       // localStorage.setItem('isLoggned')
       localStorage.setItem("isLoggned", true);
+      await loginSetDb();
+      await getUserDetails()
       showToaster("success", "Logged successfully");
       navigate("/dashboard");
     } else {
