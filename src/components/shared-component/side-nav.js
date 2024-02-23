@@ -2,22 +2,41 @@ import React, { useState } from "react";
 // import Link from 'react-router-dom'
 import { Link, useNavigate } from "react-router-dom";
 
-function SideNav() {
-  const navigate = useNavigate();
+function SideNav({handleLogout}) {
+const [showMenu,setShowMenuValue]=useState(true)
+const [menu, setMenu] = useState("Dashboard");
+
+
+  
+  const navigate = useNavigate(true);
   const logout = () => {
     console.log('logout');
     localStorage.clear();
     navigate("/");
-  };
+    handleLogout(false)
+    // handleLogout()
 
-  const [menu, setMenu] = useState("Dashboard");
+  };
+  const navClose=(()=>{
+    console.log('====================================');
+    console.log(showMenu,'showmwnu nav close before');
+    console.log('====================================');
+    setShowMenuValue(false)
+  })
+const toshowToggle=(()=>{
+  console.log('====================================');
+  console.log(showMenu,'show menu whto  to show toggle');
+  console.log('====================================');
+  setShowMenuValue(true)
+
+})
 
   return (
     <div>
-      <div class="menu-wrap">
-        <span class="material-symbols-outlined nav-close">close</span>
+      <div class={`menu-wrap ${showMenu ? 'active' : ''}`}>
+        <span class="material-symbols-outlined nav-close" onClick={navClose}>close</span>
         <a className="logo">
-          <img class="short-logo" src="images/login/logo.svg" />
+          <img class="short-logo" src="images/logo.svg" />
           <img class="actual-logo" src="images/logo-large.svg" />
         </a>
 
@@ -121,7 +140,7 @@ function SideNav() {
               </span>
             </a>
             <div class="head-more"></div>
-            <a class="mob-block menu-btn">
+            <a class="mob-block menu-btn" onClick={toshowToggle}>
               <img src="images/menu.svg" />
             </a>
           </div>

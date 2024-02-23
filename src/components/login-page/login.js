@@ -11,7 +11,7 @@ const loginidUser = [
   { username: "7406401368", password: "7406401368" },
 ];
 
-function LoginComponent() {
+function LoginComponent({onLogin}) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loggedIn, setLogin] = useState(false);
@@ -66,6 +66,7 @@ function LoginComponent() {
       await loginSetDb();
       await getUserDetails()
       showToaster("success", "Logged successfully");
+      onLogin(true)
       navigate("/dashboard");
     } else {
       localStorage.setItem("isLoggned", false);

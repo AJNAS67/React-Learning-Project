@@ -8,15 +8,36 @@ import StudentTimeTable from "./components/student/student-timetable";
 import StudentDashboard from "./components/student/dashboard/student-dashboard";
 import BarcodeFn from "./components/barcode/barcode";
 import StudentResult from "./components/student/student-result";
+import { useEffect, useState } from "react";
+import Accordian from "./components/accordian/accordian";
+import RandomColor from "./components/random-color/Random-color";
 
 function App() {
-  const isLogged=localStorage.getItem('isLoggned')
+  const [isLogged, setIsLogged] = useState(false);
+  // const isLogged=localStorage.getItem('isLoggned')
+  const handleLogin=((value)=>{
+    console.log('value',value);
+    setIsLogged(value);
+    localStorage.setItem("isLoggned",true)
+
+  })
+  const handleLogout=((value)=>{
+    setIsLogged(value)
+    localStorage.setItem("isLoggned",false)
+
+
+  })
+  // useEffect(()=>{
+  //   console.log(isLogged,'use effect');
+  //   setIsLogged(localStorage.getItem("isLoggned"))
+
+  // },[isLogged])
   return (
     <div className="App">
       <div>
         {/* <LoginComponent></LoginComponent> */}
         <BrowserRouter>
-         { isLogged ? <SideNav/>:null}
+         { isLogged ? <SideNav handleLogout={handleLogout} />:null}
             <Routes>
             <Route path="/" element={isLogged ? <StudentDashboard /> : <Navigate to="/login" />}></Route>
            
@@ -28,7 +49,9 @@ function App() {
               
               <Route path="/message" element={<StudentDashboard />}></Route>
               <Route path="/timetable" element={<StudentTimeTable />}></Route>
-              <Route path="/login" element={<LoginComponent />}></Route>
+              <Route path="/login" element={<LoginComponent   onLogin={handleLogin} />}></Route>
+              <Route path="/accordian" element={<Accordian/>}></Route>
+              <Route path="/random-color" element={<RandomColor/>}></Route>
 
             </Routes>
           
