@@ -1,5 +1,5 @@
 import React from "react";
-import { JMRoomProvider } from "@jiomeet/hooks-sdk-web";
+import { JMTemplateProvider  } from "@jiomeet/hooks-sdk-web";
 import { useJoin } from '@jiomeet/hooks-sdk-web';
 
 const JioMeet1 = () => {
@@ -14,13 +14,13 @@ const JioMeet1 = () => {
 	};
   return (
     <div>
-      {/* <JMRoomProvider> */}
+      {/* <JMTemplateProvider> */}
 			{isCallStarted ? 'Join Success' : 'Not Join Yet'}
 			<div>
 				<button onClick={() => handleJoin()}>Join</button>
 			</div>
 		
-      {/* </JMRoomProvider> */}
+      {/* </JMTemplateProvider> */}
     </div>
   );
 };

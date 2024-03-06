@@ -3,7 +3,13 @@ import "./App.css";
 import LoginComponent from "./components/login-page/login";
 import SideNav from "./components/shared-component/side-nav";
 // import {BrowserRouter,Routers,Route} from 'react-router-dom'
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import {
+  BrowserRouter,
+  Route,
+  Routes,
+  Navigate,
+  Router,
+} from "react-router-dom";
 import StudentTimeTable from "./components/student/student-timetable";
 import StudentDashboard from "./components/student/dashboard/student-dashboard";
 import BarcodeFn from "./components/barcode/barcode";
@@ -18,6 +24,8 @@ import Videosdk from "./components/videosdk-live/Videosdk";
 import JioMeet1 from "./components/JioMeet/JioMeet1";
 import SearchAutocomplete from "./components/search-autocomplete-with-api/index";
 import TicTacToe from "./components/tic-tac-toe";
+import FeatureFlagGlobalState from "./components/feature-flag/context/index.js";
+import FeatureFlags from "./components/feature-flag/index.js";
 function App() {
   const [isLogged, setIsLogged] = useState(false);
   // const isLogged=localStorage.getItem('isLoggned')
@@ -80,6 +88,14 @@ function App() {
             ></Route>
             <Route path="search-auto" element={<SearchAutocomplete />}></Route>
             <Route path="sos" element={<TicTacToe />}></Route>
+            <Route
+              path="feature-flags"
+              element={
+                <FeatureFlagGlobalState>
+                  <FeatureFlags></FeatureFlags>
+                </FeatureFlagGlobalState>
+              }
+            ></Route>
           </Routes>
         </BrowserRouter>
         {/* <Barcode></Barcode> */}

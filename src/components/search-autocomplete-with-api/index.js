@@ -48,7 +48,7 @@ function SearchAutocomplete() {
     setFilteredUsers([]);
   }
   return (
-    <div style={{ marginTop: "50px" }}>
+    <div style={{ marginTop: "50px" ,marginBottom:'50vh'}}>
       {loding ? (
         <h1>Loading Data ! Please wait</h1>
       ) : (
