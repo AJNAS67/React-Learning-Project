@@ -26,6 +26,7 @@ import SearchAutocomplete from "./components/search-autocomplete-with-api/index"
 import TicTacToe from "./components/tic-tac-toe";
 import FeatureFlagGlobalState from "./components/feature-flag/context/index.js";
 import FeatureFlags from "./components/feature-flag/index.js";
+import UseFetchHookTest from "./components/use-fetch/test.js";
 function App() {
   const [isLogged, setIsLogged] = useState(false);
   // const isLogged=localStorage.getItem('isLoggned')
@@ -96,6 +97,7 @@ function App() {
                 </FeatureFlagGlobalState>
               }
             ></Route>
+            <Route path="/usefetch-hook" element={<UseFetchHookTest />}></Route>
           </Routes>
         </BrowserRouter>
         {/* <Barcode></Barcode> */}
