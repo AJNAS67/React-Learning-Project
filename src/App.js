@@ -27,6 +27,7 @@ import TicTacToe from "./components/tic-tac-toe";
 import FeatureFlagGlobalState from "./components/feature-flag/context/index.js";
 import FeatureFlags from "./components/feature-flag/index.js";
 import UseFetchHookTest from "./components/use-fetch/test.js";
+import UseOnclickOutsideTest from "./components/use-outside-click/test.js";
 function App() {
   const [isLogged, setIsLogged] = useState(false);
   // const isLogged=localStorage.getItem('isLoggned')
@@ -98,6 +99,7 @@ function App() {
               }
             ></Route>
             <Route path="/usefetch-hook" element={<UseFetchHookTest />}></Route>
+            <Route path="/outside-click" element={<UseOnclickOutsideTest/>}></Route>
           </Routes>
         </BrowserRouter>
         {/* <Barcode></Barcode> */}
