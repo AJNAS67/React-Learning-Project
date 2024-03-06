@@ -13,7 +13,11 @@ import Accordian from "./components/accordian/accordian";
 import RandomColor from "./components/random-color/Random-color";
 import StarRating from "./components/star-rating/starRating";
 import ImageSlider from "./components/image-slider/imageSlider";
-
+import JioMeet from "./components/JioMeet/jioMeet";
+import Videosdk from "./components/videosdk-live/Videosdk";
+import JioMeet1 from "./components/JioMeet/JioMeet1";
+import SearchAutocomplete from "./components/search-autocomplete-with-api/index";
+import TicTacToe from "./components/tic-tac-toe";
 function App() {
   const [isLogged, setIsLogged] = useState(false);
   // const isLogged=localStorage.getItem('isLoggned')
@@ -59,6 +63,11 @@ function App() {
             <Route path="/accordian" element={<Accordian />}></Route>
             <Route path="/random-color" element={<RandomColor />}></Route>
             <Route path="/star-rate" element={<StarRating />}></Route>
+            <Route path="/jio-meet" element={<JioMeet />}></Route>
+            <Route path="/jio-meet1" element={<JioMeet1 />}></Route>
+
+            <Route path="/video-sdk" element={<Videosdk />}></Route>
+
             <Route
               path="/image-slider"
               element={
@@ -69,7 +78,8 @@ function App() {
                 />
               }
             ></Route>
-       
+            <Route path="search-auto" element={<SearchAutocomplete />}></Route>
+            <Route path="sos" element={<TicTacToe />}></Route>
           </Routes>
         </BrowserRouter>
         {/* <Barcode></Barcode> */}
