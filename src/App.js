@@ -28,6 +28,9 @@ import FeatureFlagGlobalState from "./components/feature-flag/context/index.js";
 import FeatureFlags from "./components/feature-flag/index.js";
 import UseFetchHookTest from "./components/use-fetch/test.js";
 import UseOnclickOutsideTest from "./components/use-outside-click/test.js";
+import UseWindowResizeTest from "./components/use-window-resize/test.js";
+import ScrollToTopAndBottom from "./components/scroll-top-bottom/index.js";
+import ScrollToSection from "./components/scroll-top-bottom/scroll-to-section.js";
 function App() {
   const [isLogged, setIsLogged] = useState(false);
   // const isLogged=localStorage.getItem('isLoggned')
@@ -99,7 +102,23 @@ function App() {
               }
             ></Route>
             <Route path="/usefetch-hook" element={<UseFetchHookTest />}></Route>
-            <Route path="/outside-click" element={<UseOnclickOutsideTest/>}></Route>
+            <Route
+              path="/outside-click"
+              element={<UseOnclickOutsideTest />}
+            ></Route>
+            <Route
+              path="/window-resize"
+              element={<UseWindowResizeTest />}
+            ></Route>
+            <Route
+              path="/scroll-top-bottom"
+              element={<ScrollToTopAndBottom />}
+            ></Route>
+            {/* scrool to perticular section */}
+            <Route
+              path="/scroll-perticular-section"
+              element={<ScrollToSection />}
+            ></Route>
           </Routes>
         </BrowserRouter>
         {/* <Barcode></Barcode> */}
